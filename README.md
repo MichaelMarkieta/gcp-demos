@@ -1,1 +1,1 @@
-# google-cloud-platform-demos
+# Google Cloud Platform Demos
