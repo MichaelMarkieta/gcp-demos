@@ -1,3 +1,5 @@
+/*
+
 provider "google" {
   project = "michaelmarkieta-gcp-demos"
 }
@@ -154,7 +156,7 @@ resource "google_compute_region_instance_group_manager" "instance_group_manager_
 }
 
 #########################################################################################################
-# COMPUTE ENGINE - LONDON (europe-west2)
+# COMPUTE ENGINE - LONDON
 #########################################################################################################
 
 resource "google_compute_region_instance_group_manager" "instance_group_manager_london" {
@@ -175,3 +177,5 @@ resource "google_compute_region_instance_group_manager" "instance_group_manager_
     initial_delay_sec = 30
   }
 }
+
+*/
