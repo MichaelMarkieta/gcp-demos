@@ -47,6 +47,10 @@ resource "google_compute_backend_service" "default" {
     group = "${google_compute_region_instance_group_manager.instance_group_manager_singapore.instance_group}"
   }
 
+  backend {
+    group = "${google_compute_region_instance_group_manager.instance_group_manager_london.instance_group}"
+  }
+
   health_checks = ["${google_compute_health_check.default.self_link}"]
 }
 
@@ -153,10 +157,21 @@ resource "google_compute_region_instance_group_manager" "instance_group_manager_
 # COMPUTE ENGINE - LONDON (europe-west2)
 #########################################################################################################
 
-#
-#
-#
-#
-#
-#
-#
+resource "google_compute_region_instance_group_manager" "instance_group_manager_london" {
+  provider           = "google-beta"
+  name               = "instance-group-manager"
+  base_instance_name = "london"
+
+  version {
+    name              = "latest"
+    instance_template = "${google_compute_instance_template.default.self_link}"
+  }
+
+  region      = "europe-west2"
+  target_size = "3"
+
+  auto_healing_policies {
+    health_check      = "${google_compute_health_check.default.self_link}"
+    initial_delay_sec = 30
+  }
+}
